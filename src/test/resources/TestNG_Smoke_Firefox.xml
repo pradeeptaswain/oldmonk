@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Sample Test Suite" verbose="1" parallel="classes" thread-count="1">
+	<listeners>
+		<listener class-name="com.pswain.oldmonk.listener.ScreenshotListener" />
+		<listener class-name="com.pswain.oldmonk.listener.RetryListener" />
+		<listener class-name="com.pswain.oldmonk.uitests.HTMLReporter" />
+	</listeners>
+
+	<parameter name="browser" value="chrome" />
+	<parameter name="version" value="47.0.1" />
+	<parameter name="platform" value="windows 8" />
+	<parameter name="testdataxml" value="src/test/resources/testdata.xml" />
+
+	<test name="Sample Smoke Tests">
+		<groups>
+			<run>
+				<include name="smoke" />
+			</run>
+		</groups>
+
+		<packages>
+			<package name="com.pswain.oldmonk.uitests" />
+		</packages>
+
+	</test>
+</suite>

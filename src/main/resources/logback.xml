@@ -1,0 +1,38 @@
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="RootSiftAppender" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<Key>testname</Key>
+			<DefaultValue>application</DefaultValue>
+		</discriminator>
+		<sift>
+			<appender name="FILE-${testname}"
+				class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<File>logs/${testname}.log</File>
+				<rollingPolicy
+					class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+					<FileNamePattern>${testname}.%i.log</FileNamePattern>
+					<MinIndex>1</MinIndex>
+					<MaxIndex>100</MaxIndex>
+				</rollingPolicy>
+				<triggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+					<MaxFileSize>5MB</MaxFileSize>
+				</triggeringPolicy>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<Pattern>%d{ISO8601} %-5level %C{1} [%M:%L] [%thread] - %msg%n</Pattern>
+				</layout>
+			</appender>
+		</sift>
+	</appender>
+	<root level="debug">
+		<appender-ref ref="RootSiftAppender" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>  
