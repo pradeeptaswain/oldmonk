@@ -175,7 +175,7 @@ To run the test script, we need a testng xml file. Create an xml file in the roo
 	</listeners>
 
 	<parameter name="browser" value="chrome" />
-	<parameter name="version" value="47.0.1" />
+	<parameter name="version" value="56.0" />
 	<parameter name="platform" value="windows 8" />
 	<parameter name="testdataxml" value="src/main/resources/testdata.xml" />
 
