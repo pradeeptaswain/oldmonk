@@ -5,3 +5,5 @@ logs/
 .project
 *.html
 test-output/
+.DS_Store
+src/.DS_Store
