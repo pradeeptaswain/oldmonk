@@ -134,16 +134,17 @@ public class TestClass extends BaseTest
     @Test(groups = { "smoke" }, dataProvider = "testdataprovider", dataProviderClass = TestDataProvider.class)
     public void testMethod(String email, String password) throws Exception
     {
-        YahooTestPage tPage = new YahooTestPage(driver);
-        tPage.clickOnMailLink();
-        tPage.typeEmailAddress(email);
-        tPage.typePassword(password);
-        HomePage hPage = tPage.clickOnSigninButton();
+        HomePage homePage = new HomePage(driver);
         
-        // Do something with home page
+        MailLoginPage loginPage = homePage.clickOnMailLink();
+        loginPage.typeEmailAddress(email);
+        loginPage.typePassword(password);
+        
+        MailHomePage mailHomePage = loginPage.clickOnSigninButton();
+
+        // Do something with mail home page
     }
 }
-
 ```
 Note that, email and password parameters are injected into the test method from outside data source. To create the data source, create a new file in `src/main/resources` directory. For example our testdata.xml file looks like this:
 
@@ -160,6 +161,73 @@ Note that, email and password parameters are injected into the test method from 
 </testdatasuite>
 ```
 You can have any number of `dataset` sections inside `testclass` section. If there are multiple `dataset` sections, test method will be executed multiple times with different `dataset` test data.
+
+## Create few page classes
+
+```
+package com.pswain.oldmonk.uitests;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import com.pswain.oldmonk.core.BasePage;
+import com.pswain.oldmonk.exception.InvalidLocatorStrategyException;
+import com.pswain.oldmonk.exception.PropertyNotFoundException;
+
+public class HomePage extends BasePage
+{
+    public HomePage(WebDriver driver) throws IOException
+    {
+        super(driver);
+    }
+
+    public MailLoginPage clickOnMailLink() throws PropertyNotFoundException, InvalidLocatorStrategyException
+    {
+        click("mail_link");
+        return PageFactory.initElements(driver, MailLoginPage.class);
+    }
+}
+```
+
+```
+package com.pswain.oldmonk.uitests;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import com.pswain.oldmonk.core.BasePage;
+import com.pswain.oldmonk.exception.InvalidLocatorStrategyException;
+import com.pswain.oldmonk.exception.PropertyNotFoundException;
+
+public class MailLoginPage extends BasePage
+{
+    public MailLoginPage(WebDriver driver) throws IOException
+    {
+        super(driver);
+    }
+
+    public void typeEmailAddress(String emailAddress) throws PropertyNotFoundException, InvalidLocatorStrategyException
+    {
+        type("email_text_field", emailAddress);
+    }
+
+    public void typePassword(String password) throws PropertyNotFoundException, InvalidLocatorStrategyException
+    {
+        type("passsword_field", password);
+    }
+
+    public MailHomePage clickOnSigninButton() throws PropertyNotFoundException, InvalidLocatorStrategyException
+    {
+        click("signin_button");
+        return PageFactory.initElements(driver, MailHomePage.class);
+    }
+}
+
+```
 
 ## Run Test Script
 
