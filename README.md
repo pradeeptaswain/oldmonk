@@ -202,16 +202,16 @@ At this point, browser will be launched and test will be executed. Reports will 
 We can set different profile parameters for different browsers using browser profiles. Currently supported browser profiles are ChromeBrowserProfile, FirefoxBrowserProfile and IEBrowserProfile. To use a profile, use it like this:
 
 ```
-	FirefoxBrowserProfile ffProfile = new FirefoxBrowserProfile();
+FirefoxBrowserProfile ffProfile = new FirefoxBrowserProfile();
 	
-        ffProfile.setAcceptUntrustedCertificates(true).showDownloadManagerWhenStarting(false)
+ffProfile.setAcceptUntrustedCertificates(true).showDownloadManagerWhenStarting(false)
                 .setDownloadDirectory("/Users/pradeepta/Downloads");
         
-        DesiredCapabilities caps = new WebCapabilitiesBuilder().addBrowser(browser)
+DesiredCapabilities caps = new WebCapabilitiesBuilder().addBrowser(browser)
                 .addBrowserDriverExecutablePath(config.getProperty("gecko.driver.path")).addVersion(version)
                 .addPlatform(platform).addBrowserProfile(ffProfile).build();
 
-        driver = new WebDriverFactory().createDriver(caps);
+driver = new WebDriverFactory().createDriver(caps);
 
 ```
 ## Using proxy
