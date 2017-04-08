@@ -19,7 +19,7 @@ To use the framework, clone the repo and run the command:
 ```
 mvn clean package
 ```
-It will generate oldmonk-jar-with-dependencies.jar file. Now create a simple maven project using the command 
+It will generate `oldmonk-jar-with-dependencies.jar` file. Now create a simple maven project using the command 
 ```
 mvn archetype:generate -DgroupId={project-packaging}
    -DartifactId={project-name}
