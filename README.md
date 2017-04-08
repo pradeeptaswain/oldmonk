@@ -229,6 +229,16 @@ public class MailLoginPage extends BasePage
 
 ```
 
+## Store element locators
+
+To store element locators create .properties files inside src/main/resources folder. Sample locator file will look like this:
+
+```
+mail_link=XPATH,//span[text()='Mail']
+email_text_field=ID,email
+password_field=NAME,password
+```
+
 ## Run Test Script
 
 To run the test script, we need a testng xml file. Create an xml file in the root of the directory and add the following content:
