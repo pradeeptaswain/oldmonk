@@ -234,3 +234,7 @@ URL remoteHubUrl = new SeleniumGridUrlBuilder().addProtocol(Protocol.HTTP).addSe
 
 driver = new WebDriverFactory().createDriver(remoteHubUrl, caps);
 ```
+
+## Supported element actions
+
+To check the supported element actions/supported selenium commands see [BasePage.java](src/main/java/com/pswain/oldmonk/core/BasePage.java) 
