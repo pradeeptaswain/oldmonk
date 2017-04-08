@@ -29,7 +29,7 @@ mvn archetype:generate -DgroupId={project-packaging}
 
 Import this project in eclipse and any other Java IDE. Add the `oldmonk-jar-with-dependencies.jar` file to build path.
 
-**Steps to create a new test script**
+### Steps to create a new test script
 
 Create a new file `BaseTest.java` in `src/main/java` folder. We'll be using this as a base test class, that all test script classes will extend. This class will contain few configuration methods, that will initialize the project and create appropriate driver. At the end of the test, it will close the driver.
 
@@ -90,7 +90,7 @@ public class BaseTest
 }
 
 ```
-**Create a project configuration file**
+### Create a project configuration file
 
 Create a new file `project.properties` in the root of the project and add following  lines:
 
@@ -118,7 +118,7 @@ max.retry.count=0
 chrome.driver.path=/Users/pradeepta/Tools/chromedriver
 ```
 
-**Create Test Script**
+### Create Test Script
 
 Create a test script to open browser, navigate to yahoo.com and click on 'mail' link
 
@@ -161,7 +161,7 @@ Note that, email and password parameters are injected into the test method from 
 ```
 You can have any number of `dataset` sections inside `testclass` section. If there are multiple `dataset` sections, test method will be executed multiple times with different `dataset` test data.
 
-**Run Test Script**
+## Run Test Script
 
 To run the test script, we need a testng xml file. Create an xml file in the root of the directory and add the following content:
 
@@ -195,9 +195,9 @@ To run the test script, we need a testng xml file. Create an xml file in the roo
 ```
 At this point, browser will be launched and test will be executed. Reports will be generated inside test-output folder.
 
-***Additional Information***
+# Additional Information
 
-**Creating browser profile**
+## Creating browser profile
 
 We can set different profile parameters for different browsers using browser profiles. Currently supported browser profiles are ChromeBrowserProfile, FirefoxBrowserProfile and IEBrowserProfile. To use a profile, use it like this:
 
@@ -214,7 +214,7 @@ We can set different profile parameters for different browsers using browser pro
         driver = new WebDriverFactory().createDriver(caps);
 
 ```
-**Using proxy**
+## Using proxy
 
 To access the websites using proxy, use it like:
 
@@ -224,7 +224,7 @@ DesiredCapabilities caps = new WebCapabilitiesBuilder().addBrowser(browser).addP
                 .addPlatform(platform).addBrowserProfile(ffProfile).build();
 ```
 
-**Running tests using selenium GRID**
+## Running tests using selenium GRID
 
 Assuming that selenium Grid is configued on localhost and is running on port 4444, you can run your tests on grid using `GridUrlBuilder`
 
