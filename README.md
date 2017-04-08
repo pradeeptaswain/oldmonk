@@ -195,4 +195,42 @@ To run the test script, we need a testng xml file. Create an xml file in the roo
 ```
 At this point, browser will be launched and test will be executed. Reports will be generated inside test-output folder.
 
+***Additional Information***
 
+**Creating browser profile**
+
+We can set different profile parameters for different browsers using browser profiles. Currently supported browser profiles are ChromeBrowserProfile, FirefoxBrowserProfile and IEBrowserProfile. To use a profile, use it like this:
+
+```
+	FirefoxBrowserProfile ffProfile = new FirefoxBrowserProfile();
+	
+        ffProfile.setAcceptUntrustedCertificates(true).showDownloadManagerWhenStarting(false)
+                .setDownloadDirectory("/Users/pradeepta/Downloads");
+        
+        DesiredCapabilities caps = new WebCapabilitiesBuilder().addBrowser(browser)
+                .addBrowserDriverExecutablePath(config.getProperty("gecko.driver.path")).addVersion(version)
+                .addPlatform(platform).addBrowserProfile(ffProfile).build();
+
+        driver = new WebDriverFactory().createDriver(caps);
+
+```
+**Using proxy**
+
+To access the websites using proxy, use it like:
+
+```
+DesiredCapabilities caps = new WebCapabilitiesBuilder().addBrowser(browser).addProxy("192.168.3.60", 5678).
+                .addBrowserDriverExecutablePath(config.getProperty("gecko.driver.path")).addVersion(version)
+                .addPlatform(platform).addBrowserProfile(ffProfile).build();
+```
+
+**Running tests using selenium GRID**
+
+Assuming that selenium Grid is configued on localhost and is running on port 4444, you can run your tests on grid using `GridUrlBuilder`
+
+```
+URL remoteHubUrl = new SeleniumGridUrlBuilder().addProtocol(Protocol.HTTP).addSeleniumHubHost("127.0.0.1")
+                .addSeleniumHubPort(4444).build();
+
+driver = new WebDriverFactory().createDriver(remoteHubUrl, caps);
+```
