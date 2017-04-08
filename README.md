@@ -1,7 +1,7 @@
 # oldmonk
 OldMonk is an Automation framework for developing tests using Selenium/WebDriver and TestNG
 
-This framework abstract away the boiler plate code that are needed for setting up any Selenium/WebDriver/TestNG based automation framework. It provides the below abilities:
+This framework abstracts away the boiler plate code that are needed for setting up any Selenium/WebDriver/TestNG based automation framework. It provides the below abilities:
 
 - Logging
 - Generation of screenshots in case of test failure
