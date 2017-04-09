@@ -4,7 +4,12 @@
 	<groupId>com.pswain</groupId>
 	<artifactId>oldmonk</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<packaging>jar</packaging>
+	<name>oldmonk</name>
+	<description>Selenium/WebDriver Automation Framework</description>
+	<url>https://github.com/pradeepta02/oldmonk</url>
+	
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.7</jdk.version>
