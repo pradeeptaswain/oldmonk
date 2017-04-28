@@ -34,7 +34,7 @@ Import this project in eclipse and any other Java IDE. Add the `oldmonk-jar-with
 Create a new file `BaseTest.java` in `src/main/java` folder. We'll be using this as a base test class, that all test script classes will extend. This class will contain few configuration methods, that will initialize the project and create appropriate driver. At the end of the test, it will close the driver.
 
 ```
-package com.pswain.oldmonk.uitests;
+package io.xschema.oldmonk.uitests;
 
 import java.util.Properties;
 
@@ -45,10 +45,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-import com.pswain.oldmonk.builder.WebCapabilitiesBuilder;
-import com.pswain.oldmonk.factory.WebDriverFactory;
-import com.pswain.oldmonk.utils.ObjectRepository;
-import com.pswain.oldmonk.utils.ProjectConfigurator;
+import io.xschema.oldmonk.builder.WebCapabilitiesBuilder;
+import io.xschema.oldmonk.factory.WebDriverFactory;
+import io.xschema.oldmonk.utils.ObjectRepository;
+import io.xschema.oldmonk.utils.ProjectConfigurator;
 
 public class BaseTest
 {
@@ -123,11 +123,11 @@ chrome.driver.path=/Users/pradeepta/Tools/chromedriver
 Create a test script to open browser, navigate to yahoo.com and click on 'mail' link
 
 ```
-package com.pswain.oldmonk.uitests;
+package io.xschema.oldmonk.uitests;
 
 import org.testng.annotations.Test;
 
-import com.pswain.oldmonk.utils.TestDataProvider;
+import io.xschema.oldmonk.utils.TestDataProvider;
 
 public class TestClass extends BaseTest
 {
@@ -152,7 +152,7 @@ Note that, email and password parameters are injected into the test method from 
 <?xml version="1.0" encoding="UTF-8"?>
 
 <testdatasuite>
-	<testclass name="com.pswain.oldmonk.uitests.TestClass">
+	<testclass name="io.xschema.oldmonk.uitests.TestClass">
 		<dataset>
 			<email>test@yahoo.com</email>
 			<password>mypassword</password>
@@ -165,16 +165,16 @@ You can have any number of `dataset` sections inside `testclass` section. If the
 ## Create few page classes
 
 ```
-package com.pswain.oldmonk.uitests;
+package io.xschema.oldmonk.uitests;
 
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import com.pswain.oldmonk.core.BasePage;
-import com.pswain.oldmonk.exception.InvalidLocatorStrategyException;
-import com.pswain.oldmonk.exception.PropertyNotFoundException;
+import io.xschema.oldmonk.core.BasePage;
+import io.xschema.oldmonk.exception.InvalidLocatorStrategyException;
+import io.xschema.oldmonk.exception.PropertyNotFoundException;
 
 public class HomePage extends BasePage
 {
@@ -192,16 +192,16 @@ public class HomePage extends BasePage
 ```
 
 ```
-package com.pswain.oldmonk.uitests;
+package io.xschema.oldmonk.uitests;
 
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import com.pswain.oldmonk.core.BasePage;
-import com.pswain.oldmonk.exception.InvalidLocatorStrategyException;
-import com.pswain.oldmonk.exception.PropertyNotFoundException;
+import io.xschema.oldmonk.core.BasePage;
+import io.xschema.oldmonk.exception.InvalidLocatorStrategyException;
+import io.xschema.oldmonk.exception.PropertyNotFoundException;
 
 public class MailLoginPage extends BasePage
 {
@@ -248,8 +248,8 @@ To run the test script, we need a testng xml file. Create an xml file in the roo
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Sample Test Suite" verbose="1" parallel="classes" thread-count="1">
 	<listeners>
-		<listener class-name="com.pswain.oldmonk.listener.ScreenshotListener" />
-		<listener class-name="com.pswain.oldmonk.listener.RetryListener" />
+		<listener class-name="io.xschema.oldmonk.listener.ScreenshotListener" />
+		<listener class-name="io.xschema.oldmonk.listener.RetryListener" />
 	</listeners>
 
 	<parameter name="browser" value="chrome" />
@@ -265,7 +265,7 @@ To run the test script, we need a testng xml file. Create an xml file in the roo
 		</groups>
 
 		<packages>
-			<package name="com.pswain.oldmonk.uitests" />
+			<package name="io.xschema.oldmonk.uitests" />
 		</packages>
 
 	</test>
@@ -315,4 +315,4 @@ driver = new WebDriverFactory().createDriver(remoteHubUrl, caps);
 
 ## Supported element actions
 
-To check the supported element actions/supported selenium commands see [BasePage.java](src/main/java/com/pswain/oldmonk/core/BasePage.java) 
+To check the supported element actions/supported selenium commands see [BasePage.java](src/main/java/io/xschema/oldmonk/core/BasePage.java) 
