@@ -27,7 +27,7 @@ mvn archetype:generate -DgroupId={project-packaging}
    -DinteractiveMode=false
 ```
 
-Import this project in eclipse and any other Java IDE. Add the `oldmonk-jar-with-dependencies.jar` file to build path.
+Import this project in eclipse or any other Java IDE. Add the `oldmonk-jar-with-dependencies.jar` file to build path.
 
 ### Steps to create a new test script
 
